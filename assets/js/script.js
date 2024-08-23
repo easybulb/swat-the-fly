@@ -2,6 +2,7 @@ let score = 0;
 let countdown;
 let timeLeft;
 let highScore = localStorage.getItem('highScore') || 0;
+let isMuted = false; // Track the mute state
 
 // Select and store references to DOM elements that will be manipulated
 const fly = document.getElementById('fly');
@@ -17,11 +18,31 @@ const playAgainButton = document.getElementById('play-again-button');
 const finalScore = document.getElementById('final-score');
 const timeSelect = document.getElementById('time-select');
 const endButton = document.getElementById('end-button');
+const backgroundMusic = document.getElementById('background-music');
+const muteButton = document.getElementById('mute-button');
 
 // Display the high score on the screen
 highScoreBoard.textContent = `High Score: ${highScore}`;
 highScoreBoard.id = 'high-score-board';
 startScreen.appendChild(highScoreBoard);
+
+// Start playing the background music when the page loads
+backgroundMusic.play();
+
+function toggleMusic() {
+    if (isMuted) {
+        backgroundMusic.muted = false;
+        isMuted = false;
+        muteButton.classList.remove('muted');
+    } else {
+        backgroundMusic.muted = true;
+        isMuted = true;
+        muteButton.classList.add('muted');
+    }
+}
+
+// Mute/unmute button functionality
+muteButton.addEventListener('click', toggleMusic);
 
 function getRandomPosition() {
     const x = Math.floor(Math.random() * (gameContainer.clientWidth - fly.clientWidth));
@@ -52,6 +73,8 @@ fly.addEventListener('touchstart', (e) => {
 
 // Function to start the game
 function startGame() {
+    backgroundMusic.pause(); // Stop the music when the game starts
+
     score = 0; // Reset the score to 0 at the start of the game
     scoreBoard.textContent = `Score: ${score}`; // Reset the scoreboard
     highScoreBoard.textContent = `High Score: ${highScore}`; // Display current high score
@@ -81,6 +104,11 @@ function endGame() {
     gameContainer.style.display = 'none';
     endScreen.style.display = 'flex';
     finalScore.textContent = `Your final score is ${score}`;
+
+    // Start the background music when the game ends
+    if (!isMuted) {
+        backgroundMusic.play();
+    }
 
     // Check if the current score is higher than the stored high score
     if (score > highScore) {
@@ -121,6 +149,11 @@ function endAndReturnHome() {
     gameContainer.style.display = 'none'; // Hide the game container
     endScreen.style.display = 'none'; // Hide the end screen
     startScreen.style.display = 'flex'; // Show the start screen
+
+    // Start the background music when returning to the start screen
+    if (!isMuted) {
+        backgroundMusic.play();
+    }
 }
 
 // Attach the startGame function to both click and touchstart events on the start button
