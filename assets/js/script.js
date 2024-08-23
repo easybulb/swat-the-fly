@@ -12,7 +12,8 @@ const timer = document.getElementById('timer');
 const startScreen = document.getElementById('start-screen');
 const endScreen = document.getElementById('end-screen');
 const startButton = document.getElementById('start-button');
-const restartButton = document.getElementById('top-restart-button');
+const restartButton = document.getElementById('restart-button');
+const playAgainButton = document.getElementById('play-again-button');
 const finalScore = document.getElementById('final-score');
 const timeSelect = document.getElementById('time-select');
 const endButton = document.getElementById('end-button');
@@ -132,6 +133,13 @@ startButton.addEventListener('touchstart', (e) => {
 // Attach the restartGame function to both click and touchstart events on the restart button
 restartButton.addEventListener('click', restartGame);
 restartButton.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    restartGame();
+});
+
+// Attach the restartGame function to the Play Again button on the end screen
+playAgainButton.addEventListener('click', restartGame);
+playAgainButton.addEventListener('touchstart', (e) => {
     e.preventDefault();
     restartGame();
 });
