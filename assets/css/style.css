@@ -204,7 +204,7 @@ body {
 @media (max-width: 600px) {
     #game-container {
         width: 95%;  /* Adjust game container width */
-        height: 70vh; /* Adjust game container height */
+        height: 60vh; /* Adjust game container height */
         margin-top: -20px;
     }
 
