@@ -12,7 +12,7 @@
     <title>Swat the Fly Game</title>
 
     <!-- Favicon links -->
-     
+
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
@@ -20,6 +20,11 @@
 </head>
 
 <body>
+    <audio id="background-music" loop>
+        <source src="assets/audio/background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div id="start-screen">
         <h1>Swat the Fly Game</h1>
         <label for="time-select">Select Countdown Time (seconds):</label>
@@ -45,6 +50,9 @@
         <button id="end-button">End</button>
         <button id="info-button">(i)</button>
     </div>
+
+    <!-- Mute/Unmute Button -->
+    <button id="mute-button">🔊</button>
 
     <!-- Info Popup -->
     <div id="info-popup" class="popup">
