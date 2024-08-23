@@ -127,6 +127,9 @@ function restartGame() {
     scoreBoard.textContent = `Score: ${score}`; // Reset the scoreboard
     timer.textContent = `Time: ${timeLeft}s`; // Reset the timer display
 
+    // Stop the background music when the game restarts
+    backgroundMusic.pause();
+
     gameContainer.style.display = 'block';
     startScreen.style.display = 'none';
     endScreen.style.display = 'none';
@@ -142,6 +145,7 @@ function restartGame() {
         }
     }, 1000);
 }
+
 
 // Function to stop the game and return to the start screen
 function endAndReturnHome() {
