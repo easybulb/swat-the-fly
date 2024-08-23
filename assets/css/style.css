@@ -210,6 +210,10 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    body {
+        background-image: url('../images/swat-game-mobile-background.png');
+    }
+    
     #navigation-buttons button {
         padding: 8px;
         font-size: 14px;
