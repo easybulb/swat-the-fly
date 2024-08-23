@@ -57,12 +57,19 @@ function moveFly() {
     fly.style.top = `${y}px`;
 }
 
-// Function to handle the fly being swatted by the player
+// Select and store the swatter sound element
+const swatSound = document.getElementById('swat-sound');
+
 function swatFly() {
     score++;
     scoreBoard.textContent = `Score: ${score}`;
     moveFly();
+    
+    // Play the swatter sound effect
+    swatSound.currentTime = 0; // Reset the sound to the start (useful if swatting quickly)
+    swatSound.play();
 }
+
 
 // Attach the swatFly function to both click and touchstart events on the fly element
 fly.addEventListener('click', swatFly);
