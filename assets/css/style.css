@@ -23,6 +23,25 @@ body {
     cursor: auto; 
 }
 
+#mute-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #000;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 7px;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#mute-button.muted::after {
+    content: "🔇";
+}
+
+
 #game-container {
     position: relative;
     width: 80%;
