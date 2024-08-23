@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap");
+
+/* Universal selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: "Catamaran", sans-serif;
+    background: url('../images/swat-game-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#game-container {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border: 3px solid #444;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+#fly {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-image: url('../images/fly80px.png');
+    background-size: cover;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 1;
+}
+
+#score-board, #timer {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#score-board {
+    top: 10px;
+    left: 10px;
+}
+
+#timer {
+    top: 10px;
+    right: 10px;
+}
+
+#high-score-board {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: #000;
+    border: 2px solid #fff;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+#start-screen, #end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#start-screen h1, #end-screen h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #3b38dc;
+    text-shadow: 2px 2px #333; /* subtle text shadow */
+}
+
+#time-select {
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+#navigation-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#navigation-buttons button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #5151b6;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#navigation-buttons button:hover {
+    background-color: #3b3b86;
+}
+
+/* Info Popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    color: red;
+}
+
+#restart-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #4CAF49;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #navigation-buttons button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .popup-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    #game-container {
+        width: 95%;  /* Adjust game container width */
+        height: 70vh; /* Adjust game container height */
+        margin-top: -20px;
+    }
+
+    #fly {
+        width: 50px;  /* Adjust fly size for smaller screens */
+        height: 50px;
+    }
+
+    #time-select {
+        font-size: 23px;
+        padding: 10px;
+        margin-bottom: 20px;
+        margin-top: 15px;
+    }
+
+    #start-button {
+        padding: 15px 25px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #score-board, #timer {
+        font-size: 20px;  /* Adjust text sizes */
+    }
+
+    #start-screen h1, #end-screen h1 {
+        font-size: 32px;  /* Adjust heading sizes */
+    }
+
+    #start-button, #restart-button {
+        font-size: 16px;  /* Adjust button sizes */
+    }
+}
