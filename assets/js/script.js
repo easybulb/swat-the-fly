@@ -6,6 +6,7 @@ let isMuted = false; // Track the mute state
 
 // Select and store references to DOM elements that will be manipulated
 const fly = document.getElementById('fly');
+const bee = document.getElementById('bee'); // Select the bee element
 const scoreBoard = document.getElementById('score-board');
 const highScoreBoard = document.createElement('div');
 const gameContainer = document.getElementById('game-container');
@@ -20,6 +21,7 @@ const timeSelect = document.getElementById('time-select');
 const endButton = document.getElementById('end-button');
 const backgroundMusic = document.getElementById('background-music');
 const muteButton = document.getElementById('mute-button');
+const swatSound = document.getElementById('swat-sound');
 
 // Display the high score on the screen
 highScoreBoard.textContent = `High Score: ${highScore}`;
@@ -57,9 +59,14 @@ function moveFly() {
     fly.style.top = `${y}px`;
 }
 
-// Select and store the swatter sound element
-const swatSound = document.getElementById('swat-sound');
+// Function to move the bee to a new random position
+function moveBee() {
+    const { x, y } = getRandomPosition();
+    bee.style.left = `${x}px`;
+    bee.style.top = `${y}px`;
+}
 
+// Function to handle the fly being swatted by the player
 function swatFly() {
     score++;
     scoreBoard.textContent = `Score: ${score}`;
@@ -72,7 +79,17 @@ function swatFly() {
     }
 }
 
+// Function to handle the bee being swatted by the player
+function swatBee() {
+    score -= 2; // Deduct points
+    if (score < 0) score = 0; // Ensure score doesn't go below 0
+    scoreBoard.textContent = `Score: ${score}`;
 
+    bee.style.display = 'none'; // Hide the bee
+    fly.style.display = 'block'; // Show the fly
+
+    moveFly(); // Move the fly to a new position
+}
 
 // Attach the swatFly function to both click and touchstart events on the fly element
 fly.addEventListener('click', swatFly);
@@ -80,6 +97,28 @@ fly.addEventListener('touchstart', (e) => {
     e.preventDefault(); // Prevents the default touch behavior
     swatFly();
 });
+
+// Attach the swatBee function to both click and touchstart events on the bee element
+bee.addEventListener('click', swatBee);
+bee.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevents the default touch behavior
+    swatBee();
+});
+
+// Function to randomly show the bee and hide the fly
+function randomBeeAppearance() {
+    const showBee = Math.random() < 0.3; // 30% chance of showing the bee
+
+    if (showBee) {
+        fly.style.display = 'none'; // Hide the fly
+        bee.style.display = 'block'; // Show the bee
+        moveBee(); // Move the bee to a new position
+    } else {
+        fly.style.display = 'block'; // Show the fly
+        bee.style.display = 'none'; // Hide the bee
+        moveFly(); // Move the fly to a new position
+    }
+}
 
 // Function to start the game
 function startGame() {
@@ -96,14 +135,14 @@ function startGame() {
     gameContainer.style.display = 'block';
     endScreen.style.display = 'none';
 
-    moveFly();
-
     // Start the countdown timer, decreasing the timeLeft by 1 every second
     countdown = setInterval(() => {
         timeLeft--; // Decrease the remaining time by 1 second
         timer.textContent = `Time: ${timeLeft}s`;
         if (timeLeft <= 0) { // Check if the time has run out
             endGame(); // End the game if the time is up
+        } else {
+            randomBeeAppearance(); // Randomly show the bee or the fly
         }
     }, 1000); // Run the interval every 1000ms (1 second)
 }
@@ -152,10 +191,11 @@ function restartGame() {
         timer.textContent = `Time: ${timeLeft}s`;
         if (timeLeft <= 0) {
             endGame();
+        } else {
+            randomBeeAppearance(); // Randomly show the bee or the fly
         }
     }, 1000);
 }
-
 
 // Function to stop the game and return to the start screen
 function endAndReturnHome() {
