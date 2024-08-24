@@ -65,6 +65,17 @@ body {
     opacity: 1;
 }
 
+#bee {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-image: url('../images/bee.png');
+    background-size: cover;
+    cursor: url('../images/swatter.png') 40 40, auto; /* Ensure the swatter cursor remains */
+    z-index: 100;
+    opacity: 1;
+}
+
 #score-board, #timer {
     position: absolute;
     font-size: 24px;
@@ -213,7 +224,7 @@ body {
     body {
         background-image: url('../images/swat-game-mobile-background.png');
     }
-    
+
     #navigation-buttons button {
         padding: 8px;
         font-size: 14px;
@@ -232,6 +243,11 @@ body {
     }
 
     #fly {
+        width: 50px;  /* Adjust fly size for smaller screens */
+        height: 50px;
+    }
+
+    #bee {
         width: 50px;  /* Adjust fly size for smaller screens */
         height: 50px;
     }
