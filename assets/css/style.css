@@ -205,11 +205,13 @@ body {
     top: 10px;
     right: 20px;
     font-size: 30px;
+    font-weight: bold;
     cursor: pointer;
+    color: rgb(251, 37, 37);
 }
 
 #close-popup:hover {
-    color: red;
+    color: rgb(38, 182, 62);
 }
 
 #play-again-button {
